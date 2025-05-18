@@ -1,0 +1,46 @@
+{% extends 'shared.html' %}
+{% load static %}
+{% block title %}{{obj.name|title}}{% endblock %}
+
+{% block content %}
+<section class="hero-area">
+    <div class="page-title-banner">
+        <div class="container">
+            <div class="content-wrapper">
+                <h2>{{obj.name|title}}</h2>
+                <ul class="bread-crumb">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="{% url 'general:folders' %}">Gallery Folders</a></li>
+                    <li><a href="#">{{obj.name|title}}</a></li>
+                </ul>
+            </div> <!-- .content-wrapper -->
+        </div> <!-- .container -->
+    </div> <!-- .page-title-banner -->
+</section> <!-- .hero-area -->
+
+
+<section class="team-section section-block">
+    <div class="container">
+        {% if images %}
+        <div class="row">
+            {% for img in images %}
+            <div class="col-md-4">
+                <div class="img-wrapper">
+                    <a href="{{img.image.url}}" data-lightbox="{{img.folder.name}}" data-title="{{img.caption|title}}">
+                        <img src="{{img.image.url}}" alt="{{img.name}}" class="img-d gallery-img" style="height: 300px;">
+                      </a>
+                    
+                </div> <!-- .img-wrapper -->
+            </div> <!-- col-lg-3 col-md-6 -->
+           {% endfor %}
+        </div> <!-- .row -->
+        {% include 'snippets/pagination.html' with items=images %}
+        
+        {% else %}
+        <h3 class="text-center">No gallery images created</h3>
+        {% endif %}
+    </div> <!-- .container -->
+</section>
+
+
+{% endblock %}

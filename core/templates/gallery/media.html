@@ -1,0 +1,45 @@
+{% extends 'shared.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}TV/Radio Clips{% endblock %}
+
+{% block content %}
+<section class="hero-area">
+    <div class="page-title-banner">
+        <div class="container">
+            <div class="content-wrapper">
+                <h2>TV/Radio Clips</h2>
+                <ul class="bread-crumb">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#">TV/Radio Clips</a></li>
+                </ul>
+            </div> <!-- .content-wrapper -->
+        </div> <!-- .container -->
+    </div> <!-- .page-title-banner -->
+</section> <!-- .hero-area -->
+<section class="shortcode-section section-block">
+    <div class="container">
+        <h2 class="section-title">TV/Radio Clips</h2>
+        {% if medias %}
+        <div class="row">
+            {% for media in medias %}
+            <div class="col-sm-6 benefit-video">
+                <iframe  src="{{media.youtube_link}}" allowfullscreen>
+                </iframe>
+                
+            </div> <!-- .col-sm-6 -->
+            {% endfor %}
+
+        </div>
+        {% include 'snippets/pagination.html' with items=medias %}
+ 
+        {% else %}
+        <h3 class="text-center">No media created</h3>
+        {% endif %}
+        <!-- https://www.youtube.com/embed/_k2NJnBxtms -->
+
+    </div> <!-- .container -->
+</section> <!-- .shortcode-section -->
+
+
+{% endblock %}

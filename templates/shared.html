@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+	<!-- META -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
+
+	<!-- TITLE -->
+	<title>Competition - {% block title %}{% endblock %}</title>
+
+	<!-- FONTS -->
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700%7CRoboto:400,400i,700" rel="stylesheet">
+
+	<!-- ICONS -->
+    <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.png' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/pe-icon-7-stroke.css' %}">
+
+	<!-- LIBRARIES -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/slick.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/slick-theme.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/magnific-popup.css' %}">
+	<!-- STYLES -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+	<link href="{% static 'css/lightbox.min.css' %}" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	{% block css %}
+	
+	{% endblock %}
+</head>
+<body class="home-01">
+	<!-- preloader -->
+	<div class="corporex-preloader">
+		<div class="spinner-wrapper">
+			<div class="spinner"></div>
+		</div><!-- .spinner-wrapper -->
+	</div> <!-- .corporex-preloader -->
+
+	<header class="site-header">
+		<div class="top-bar clearfix">
+			<div class="container">
+				<ul class="list-inline pull-left quick-contact">
+					<li><a href="#"><i class="fa fa-phone"></i> <span>+263853127-31</span></a></li>
+					<li><a href="#"><i class="fa fa-envelope-o"></i> <span>director@competition.co.zw</span></a></li>
+				</ul> <!-- .quick-contact -->
+
+				<ul class="list-inline pull-right top-bar-social">
+					<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+					<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+					<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+					<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+				</ul> <!-- .top-bar-menu -->
+
+				<!-- <ul class="list-inline pull-right top-bar-menu">
+					<li><a href="#">Welcome</a></li>
+					<li><a href="#">Login</a></li>
+					<li><a href="#">Sitemap</a></li>
+				</ul>  -->
+			</div> <!-- .container -->
+		</div> <!-- .top-bar -->
+		<nav class="navbar corporex-navbar navbar-01" style="background-color: #f7f7f7;">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-items" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<i class="fa fa-bars"></i>
+					</button>
+
+					<a class="navbar-brand" href="/">
+                        <img src="{% static 'img/logo-og.jpg' %}" height="100" alt="competion logo" style="margin-top: -18px">
+                    </a>
+
+				</div> <!-- .navbar-header -->
+
+				<div class="collapse navbar-collapse navbar-items" id="navbar-items">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="/">Home</a></li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About Us</a>
+
+							<ul class="dropdown-menu">
+								<li><a href="{% url 'general:background_or_mandate' %}">Background | Mandate</a></li>
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Our Divisions</a>
+									<ul class="dropdown-menu">
+										<li class="dropdown">
+											<a href=""  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mergers & Aquisitions</a></li>	
+
+										<!-- <li class="dropdown">
+											<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Research & PR</a>
+											<ul class="dropdown-menu">
+												<li>
+														<li><a href="{% url 'general:downloads' 'sector-studies' %}">Sector Studies</a></li>
+														<li><a href="{% url 'general:downloads' 'african-competition-forum-studies' %}">African Competition Forum Studies</a></li>
+														<li><a href="{% url 'general:downloads' 'analytical-papers' %}">Analytical Papers</a></li>
+														<li><a href="{% url 'general:downloads' 'summary-merger-decisions' %}">Summary Merger Decisions</a></li>
+										
+												</li>
+											</ul> 
+										</li> -->
+												 						
+										<li class="dropdown">
+											<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">Tariff Trade</a>
+											<ul class="dropdown-menu">
+												<li><a href="{% url 'general:division_details' 'trade-remedies' %}">Trade Remedies</a></li>
+												<li><a href="{% url 'general:division_details' 'tariff-assistance' %}">Tariff Assistance</a></li>	
+												<li><a href="{% url 'general:downloads' 'sector-studies' %}">Sector Studies</a></li>
+												<li><a href="{% url 'general:downloads' 'african-competition-forum-studies' %}">African Competition Forum Studies</a></li>
+												<li><a href="{% url 'general:downloads' 'analytical-papers' %}">Analytical Papers</a></li>
+												<li><a href="{% url 'general:downloads' 'summary-merger-decisions' %}">Summary Merger Decisions</a></li>			
+											</ul> <!-- .dropdown-menu -->
+										</li>
+										<li><a href="{% url 'general:division_details' 'legal-and-corporate-services' %}">Legal & Corporate Services</a></li>
+										<li><a href="{% url 'general:division_details' 'restrictive-practices' %}">Restrictive Practises</a></li>
+										<li><a href="{% url 'general:division_details' 'finance-and-admin-services' %}">Finance & Admin Services</a></li>
+									</ul> <!-- .dropdown-menu -->
+								</li>
+								<li>
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Our Team</a>
+									<ul class="dropdown-menu">
+										<li><a href="{% url 'general:teams' 'board-of-commissioners' %}">Board of Commissioners</a></li>
+										<li><a href="{% url 'general:teams' 'management' %}">Management</a></li>
+										<li><a href="{% url 'general:teams' 'staff-member' %}">Staff Members</a></li>
+										
+									</ul> <!-- .dropdown-menu -->
+
+								</li>
+							</ul> <!-- .dropdown-menu -->
+
+						</li> <!-- .dropdown -->
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Downloads</a>
+						
+							<ul class="dropdown-menu">
+								<li><a href="{% url 'general:downloads' 'comesa-competition-commission' %}">Comesa Competition Commission</a></li>
+								<li><a href="{% url 'general:downloads' 'commission-decisions' %}">Commission Decisions</a></li>
+								<li><a href="{% url 'general:downloads' 'forms' %}">Forms</a></li>
+								<li><a href="{% url 'general:downloads' 'legal-and-corporate-issues' %}">Legal & Corporate Issues</a></li>
+								<li><a href="{% url 'general:downloads' 'guidelines' %}">Guidelines</a></li>
+								<li><a href="{% url 'general:downloads' 'brochures' %}">Brochures</a></li>
+								<li><a href="{% url 'general:downloads' 'policies' %}">Policies</a></li>
+							</ul> <!-- .dropdown-menu -->
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Media Releases</a>
+							<ul class="dropdown-menu">
+								<li>
+									    <li><a href="{% url 'general:downloads' 'annual-reports' %}">Annual Reports</a></li>
+										<li><a href="{% url 'general:downloads' 'newsletter' %}">Newsletters</a></li>
+										<li><a href="{% url 'general:downloads' 'strategic-plan' %}">Strategic Plan</a></li>
+										<li><a href="{% url 'general:downloads' 'stakeholder-consultations' %}">Stakeholder Consultations</a></li>
+										<li><a href="{% url 'general:media' %}">Radio/TV Clips</a></li>
+										<li><a href="{% url 'general:news' %}">Newspaper Articles</a></li>
+										<li><a href="{% url 'general:vacancies' %}">Vacancies</a></li>							
+								</li>
+							</ul> <!-- .dropdown-menu -->
+						</li>
+						<li><a href="{% url 'general:legislation' 'legislation' %}">Legislation</a></li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Complaints</a>
+							<ul class="dropdown-menu">
+								<li>
+									<li><a href="{% url 'general:downloads' 'complaints-form-relating-to-restrictive-practices' %}">Complaints Form relating to Restrictive Practices</a></li>
+										<li><a href="{% url 'general:downloads' 'merger-notification-form' %}">Merger Notification Form</a></li>
+										<li><a href="{% url 'general:downloads' 'dumping-form' %}">Dumping Form</a></li>
+													
+								</li>
+							</ul> <!-- .dropdown-menu -->
+						</li>
+					
+						<li><a href="{% url 'general:tenders' %}">Tenders</a></li>
+						<li><a href="{% url 'general:folders' %}">Gallery</a></li>
+					
+						<li class="nav-btn"><a href="{% url 'general:contact' %}" style="color: #fff;">Get In Touch</a></li>
+					</ul> <!-- .nav navbar-nav -->
+				</div> <!-- .collapse navbar-collapse -->
+
+			</div> <!-- .container -->
+		</nav> <!-- .navbar -->
+	</header> <!-- .site-header -->
+    {% block content %}
+
+    {% endblock %}
+	
+	<footer class="site-footer">
+		<div class="contact-info">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="icon-box"><i class="fa fa-map-marker"></i></div>
+						<p>23 Broadlands Emerald Hill Harare</p>
+					</div> <!-- .col-md-4 -->
+					<div class="col-md-4">
+						<div class="icon-box"><i class="fa fa-phone"></i></div>
+						<a href="#">+263853127-31</a>
+					</div> <!-- .col-md-4 -->
+					<div class="col-md-4">
+						<div class="icon-box"><i class="fa fa-envelope"></i></div>
+						<a href="#">director@competition.co.zw</a>
+					</div> <!-- .col-md-4 -->
+				</div> <!-- .row -->
+			</div> <!-- .container -->
+		</div> <!-- .cntact-info -->
+		<div class="footer-blocks">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 footer-about">
+						<h3 class="widget-title">About Us</h3>
+						<p class="text-white">
+							The Competition and Tariff Commission (Commission) is a statutory body established under the Competition Act [Chapter 14:28]. The present Commission is a product of the merger in 2001 of the former Industry and Trade Competition Commission (ITCC) and Tariff Commission (TC)
+						</p>
+						<ul class="list-inline footer-social">
+							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+							<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+						</ul> <!-- .footer-social -->
+					</div> 
+					
+					<div class="col-md-4 recent-post-widget">
+						<h3 class="widget-title">Our Divisions</h3>
+						<ul class="post-list text-white">
+							<li>
+								<div class="content-wrapper">
+                                    <li><i class="fa fa-arrow-right"></i> <a href="{% url 'general:division_details' 'competition' %}" class="text-white">Competition</a></li>
+                                    <li><i class="fa fa-arrow-right"></i> <a href="{% url 'general:division_details' 'research-unit' %}" class="text-white">Research Unit</a></li>
+                                    <li><i class="fa fa-arrow-right"></i> <a href="{% url 'general:division_details' 'tarrifs' %}" class="text-white">Tariffs</a></li>
+                                    <li><i class="fa fa-arrow-right"></i> <a href="{% url 'general:division_details' 'legal-and-corporate-services' %}" class="text-white">Legal & Corporate Services</a></li>
+                                    <li><i class="fa fa-arrow-right"></i> <a href="{% url 'general:division_details' 'finance-and-admin-services' %}" class="text-white">Finance and Administration</a></li>
+								
+								</div> <!-- .content-wrapper -->
+							</li> <!-- .clearfix -->
+						
+						</ul> <!-- .post-list -->
+					</div>
+				
+				</div> <!-- .row -->
+			</div> <!-- .container -->
+		</div> <!-- .footer-blocks -->
+		<div class="bottom-bar">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<p>2024 - {% now "Y" %} © Competition.</p>
+					</div> <!-- .col-md-6 -->
+					<div class="col-md-6">
+						<ul class="bottom-links">
+							<li><a href="#">Terms &amp; Condition</a></li>
+							<li><a href="#">Privacy Policy</a></li>
+							<li><a href="#">Help</a></li>
+						</ul> <!-- .bottom-links -->
+					</div> <!-- .col-md-6 -->
+				</div> <!-- .row -->
+			</div> <!-- .container -->
+		</div> <!-- .bottom-bar -->
+	</footer> <!-- .site-footer -->
+
+	<!-- SCRIPTS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/slick.min.js' %}"></script>
+	<!-- <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script> -->
+	<script src="{% static 'js/mixitup.min.js' %}"></script>
+	<script src="{% static 'js/jquery.easypiechart.min.js' %}"></script>
+	<script src="{% static 'js/script.js' %}"></script>
+	<script src="{% static 'js/lightbox-plus-jquery.min.js' %}"></script>
+	<script src="{% static 'js/lightbox.min.js' %}"></script>
+</body>
+
+<!-- Mirrored from ethemestudio.com/demo/corporex/index_01.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 Jul 2024 06:39:06 GMT -->
+</html>

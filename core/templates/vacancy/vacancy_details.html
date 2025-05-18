@@ -1,0 +1,60 @@
+{% extends 'shared.html' %}
+{% load static %}
+{% block title %}{{obj.job_title|title}}{% endblock %}
+
+{% block content %}
+<section class="hero-area">
+    <div class="page-title-banner">
+        <div class="container">
+            <div class="content-wrapper">
+                <h2>{{obj.job_title|title}}</h2>
+                <ul class="bread-crumb">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="{% url 'general:vacancies'%}">Vacancies</a></li>
+                    <li><a href="#">{{obj.job_title|title}}</a></li>
+                </ul>
+            </div> <!-- .content-wrapper -->
+        </div> <!-- .container -->
+    </div> <!-- .page-title-banner -->
+</section> <!-- .hero-area -->
+<section class="shortcode-section section-block">
+    <div class="container">
+    <h2 class="section-title">{{obj.job_title|title}}</h2>
+    <div class="row">
+        <div class="col-md-8">
+            {{obj.content|safe}}
+            {% if obj.attachment %}
+            <br>
+            <div class="row lead cmc-downloads">
+               <div>
+                 <div class="col-md-2">
+                     <img src="{% static 'img/banner/pdf.svg' %}" alt="pdf icon" height="50">
+                 </div>
+                 <div class="col-md-8">
+                    <p> {{obj.job_title|title}} ({{obj.file_size}} kb)</p>
+                 </div>
+                 <div class="col-md-2">
+                     <a class="btn btn-narrow" href="{{obj.attachment.url}}" target="_blank">Download</a>
+                 </div>
+               </div>
+         
+           
+             </div>
+             {% endif %}  
+        </div>
+        <div class="col-md-4">
+            <div class="cmc-downloads">
+                <p><i>Category:</i>  {{obj.job_type|title}}</p>
+                <p><i>Posted on :</i> {{obj.timestamp}}</p>
+                <p><i>Expiring on:</i> {{obj.closing_date}}</p>
+
+            </div>
+        </div>
+    </div>
+ 
+
+    </div> <!-- .container -->
+</section> <!-- .shortcode-section -->
+
+
+{% endblock %}

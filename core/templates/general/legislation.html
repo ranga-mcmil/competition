@@ -1,0 +1,54 @@
+{% extends 'shared.html' %}
+{% load static %}
+{% block title %}Legislation{% endblock %}
+
+{% block content %}
+<section class="hero-area">
+    <div class="page-title-banner">
+        <div class="container">
+            <div class="content-wrapper">
+                <h2>Legislation</h2>
+                <ul class="bread-crumb">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#">Legislation</a></li>
+                </ul>
+            </div> <!-- .content-wrapper -->
+        </div> <!-- .container -->
+    </div> <!-- .page-title-banner -->
+</section> <!-- .hero-area -->
+<section class="shortcode-section section-block">
+    <div class="container">
+        <h2 class="section-title">Legislation</h2>
+        <div class="row">
+            <div class="col-md-5">
+                {% for download in obj.legislation_files.all %}                              
+                <div class="row lead cmc-downloads">
+                  <div>
+                    <div class="col-md-2">
+                        <img src="{% static 'img/banner/pdf.svg' %}" alt="pdf icon" height="50">
+                    </div>
+                    <div class="col-md-6">
+                       <p> {{download.file_name|title}}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <a class="btn btn-narrow btn-xs" href="{{download.file.url}}" target="_blank">Download</a>
+                    </div>
+                  </div>
+        
+              
+                </div>       
+                {% endfor %}
+        
+            </div>
+            <div class="col-md-7">
+                {{obj.content|safe}}
+            </div>
+        </div>
+       
+      
+
+    </div> <!-- .container -->
+</section> <!-- .shortcode-section -->
+
+
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'shared.html' %}
+{% load static %}
+{% block title %}Tenders{% endblock %}
+{% block content %}
+
+
+<section class="hero-area">
+    <div class="page-title-banner">
+        <div class="container">
+            <div class="content-wrapper">
+                <h2>Tenders</h2>
+                <ul class="bread-crumb">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#">Tenders</a></li>
+                </ul>
+            </div> <!-- .content-wrapper -->
+        </div> <!-- .container -->
+    </div> <!-- .page-title-banner -->
+</section> <!-- .hero-area -->
+
+
+<section class="shortcode-section section-block">
+    <div class="container">
+        <div class="title-block">
+            <h2>Tenders</h2>
+        
+        </div> <!-- .title-block -->
+        {% if tenders %}
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Title</th>
+                                <th>Size</th>
+                                <th>Posted</th>
+                                <th>Due Date</th>
+                                <th>Time</th>
+                                <th>Actions</th>
+                              
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for tender in tenders %}
+                            <tr>
+                               
+                                <td>{{forloop.counter}}</td>
+                                <td>{{tender.name|title}}</td>
+                                <td>{{tender.file_size|filesizeformat }}</td>
+                                <td>{{tender.timestamp|date:"Y-m-d H:i:s"}}</td>
+                                <td>{{tender.due_date|date:"Y-m-d"}}</td>
+                                <td>{{tender.time}}</td>
+                                <td><a href="{{tender.file.url}}" target="_blank">Download</a></td>
+                            </tr>
+                          {% endfor %}
+                        </tbody>
+                    </table>
+                </div> <!-- .responsive-table -->
+
+            </div>
+            {% include 'snippets/pagination.html' with items=tenders %}
+        </div> <!-- .row -->
+        {% else %}
+        <h3 class="text-center">No tenders posted</h3>
+        {% endif %}
+    </div> <!-- .container -->
+</section> <!-- .team-section -->
+
+
+
+{% endblock %}

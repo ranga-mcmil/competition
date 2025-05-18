@@ -1,0 +1,44 @@
+{% extends 'shared.html' %}
+{% load static %}
+{% block title %}{{obj.heading|title}}{% endblock %}
+
+{% block content %}
+<section class="hero-area">
+    <div class="page-title-banner">
+        <div class="container">
+            <div class="content-wrapper">
+                <h2>{{obj.heading|title}} Division</h2>
+                <ul class="bread-crumb">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#">{{obj.heading|title}}</a></li>
+                </ul>
+            </div> <!-- .content-wrapper -->
+        </div> <!-- .container -->
+    </div> <!-- .page-title-banner -->
+</section> <!-- .hero-area -->
+<section class="service-details section-block">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 col-md-push-3 service-content">
+                <h2 class="service-title">{{obj.heading|title}}</h2>
+            
+                <div class="overview">
+                    {{obj.main_description|safe}}
+                </div> <!-- .overview -->
+
+            </div> <!-- .service-content -->
+            <div class="col-md-3 col-md-pull-9 sidebar">
+                <div class="widget widget-service">
+                    <ul>
+                        {% for function in divisions %}         
+                        <li><a href="{% url 'general:division_details' function.slug %}">{{function.heading}}</a></li>          
+                        {% endfor %}
+                    </ul>
+                </div> <!-- .widget widget-service -->
+            </div> <!-- .col-md-4 -->
+        </div> <!-- .row -->			
+    </div> <!-- .container -->
+</section> <!-- .service-details -->
+
+
+{% endblock %}

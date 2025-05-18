@@ -1,0 +1,53 @@
+{% extends 'shared.html' %}
+{% load static %}
+{% block title %}Gallery Folders{% endblock %}
+{% block content %}
+
+
+<section class="hero-area">
+    <div class="page-title-banner">
+        <div class="container">
+            <div class="content-wrapper">
+                <h2>Gallery Folders</h2>
+                <ul class="bread-crumb">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#">Gallery Folders</a></li>
+                </ul>
+            </div> <!-- .content-wrapper -->
+        </div> <!-- .container -->
+    </div> <!-- .page-title-banner -->
+</section> <!-- .hero-area -->
+
+<section class="team-section section-block">
+    <div class="container">
+        {% if folders %}
+        <div class="row">
+            {% for folder in folders %}
+            <div class="col-lg-3 col-md-6">
+                <div class="img-wrapper">
+                    <a href="{% url 'general:folders_images' folder.slug %}">
+                        <img class="img-responsive" src="{{folder.cover_image.url}}" alt="{{folder.name}}" style="height:300px">
+                    </a>
+                    
+                </div> <!-- .img-wrapper -->
+                <div class="member-info">
+                    <h4>{{folder.name|title}}<small>{{folder.timestamp}}</small></h4>
+                    <ul class="social-links">
+                        <li><a href="{% url 'general:folders_images' folder.slug %}" style="width: 70px;border-radius: 0%;background-color: #0E1089;">
+                            View
+                        </a></li>
+                    </ul> <!-- .social-links -->
+                </div> <!-- .member-info -->
+            </div> <!-- col-lg-3 col-md-6 -->
+     {% endfor %}
+        </div> <!-- .row -->
+
+        {% include 'snippets/pagination.html' with items=folders %}
+ 
+        {% else %}
+        <h3 class="text-center">No gallery folders created</h3>
+        {% endif %}
+    </div> <!-- .container -->
+</section> <!-- .team-section -->
+
+{% endblock %}

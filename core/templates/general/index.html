@@ -1,0 +1,331 @@
+{% extends 'shared.html' %}
+{% load static %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if sliders %}
+<section class="hero-area">
+    <div id="corporex-slider" class="corporex-slider corporex-slider-02 carousel slide" data-ride="carousel" data-interval="false">
+        <ol class="carousel-indicators">
+            {% for counter in sliders %}
+            <li data-target="#corporex-slider" data-slide-to="{{forloop.counter0}}"></li>
+            {% endfor %}
+          
+        </ol> <!-- .carousel-indicators -->
+
+        <div class="carousel-inner" role="listbox">
+            {% for slider in sliders %}
+            <div class="item caption-center dark-overlay {% if forloop.counter == 1 %} active{% endif %}">
+                <img class="slider-bg img-responsive" src="{{slider.background_image.url}}" alt="{{slider.header_one}}">
+                <div class="container">
+                    
+                    <div class="carousel-caption">
+                        <h1 class="h1-extra"><span style="color: {{slider.header_one_color}};">{{slider.header_one}}</span></h1>
+                        <h1 class="h1-extra" style="color: {{slider.header_two_color}};">{{slider.header_two}}</h1>
+                      
+                        <a class="btn btn-main" href="{{slider.button_link}}" style="background-color: {{slider.button_color}};">{{slider.button_text}}</a>
+                    </div>
+                </div> 
+            </div>
+            {% endfor %}
+        </div> 
+
+        <!-- Controls -->
+          <a class="left carousel-control" href="#corporex-slider" role="button" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+          </a> <!-- .carousel-control -->
+
+          <a class="right carousel-control" href="#corporex-slider" role="button" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+          </a> <!-- .carousel-control -->
+
+    </div> <!-- .carousel -->
+</section> <!-- .hero-area -->
+{% endif %}
+<section class="service-tab section-block">
+    <div class="container">
+        <div class="title-block">
+            <h2>CTC Functions</h2>
+            <p>
+                Our CTC Functions
+            </p>
+        </div> <!-- .title-block -->
+        <div class="row">
+            <div class="col-md-3 col-sm-4">
+                <ul class="nav nav-tabs tabs-left">
+                    <li class="active"><a href="#item-01" data-toggle="tab">CTC Functions 01</a></li>
+                    <li><a href="#item-02" data-toggle="tab">CTC Functions 02</a></li>
+                    <li><a href="#item-03" data-toggle="tab">CTC Functions 03</a></li>
+                    <li><a href="#item-04" data-toggle="tab">CTC Functions 04</a></li>
+                    <li><a href="#item-05" data-toggle="tab">CTC Functions 05</a></li>
+                    <li><a href="#item-06" data-toggle="tab">CTC Functions 06</a></li>
+                    <li><a href="#item-07" data-toggle="tab">CTC Functions 07</a></li>
+                    <li><a href="#item-08" data-toggle="tab">CTC Functions 08</a></li>
+
+                </ul>
+            </div> <!-- .col-sm-3 -->
+            <div class="col-md-9 col-sm-8">
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="item-01">
+                        <div class="row">
+                            <div class="col-md-6">
+                                {% include 'snippets/ctc_banner.html'  %}
+                            </div> <!-- .col-md-6 -->
+                            <div class="col-md-6">
+                                <h3><span>CTC Functions</span>01</h3>
+                                <p>
+                                    To encourage and promote competition in all sectors of the economy
+                                </p>
+                                <a class="btn btn-main" href="#">Read More</a>
+                            </div> <!-- .col-md-6 -->
+                        </div> <!-- .row -->
+                    </div><!-- .tab-pane -->
+                    <div class="tab-pane" id="item-02">
+                        <div class="row">
+                            <div class="col-md-6">
+                                {% include 'snippets/ctc_banner.html'  %}
+                            </div> <!-- .col-md-6 -->
+                            <div class="col-md-6">
+                                <h3><span>CTC Functions</span>02</h3>
+                                <p>
+                                    To reduce barriers to entry into any sector of the economy or to any form of economic activity
+                                </p>
+                                <a class="btn btn-main" href="#">Read More</a>
+                            </div> <!-- .col-md-6 -->
+                        </div> <!-- .row -->
+                    </div> <!-- .tab-pane -->
+                    <div class="tab-pane" id="item-03">
+                        <div class="row">
+                            <div class="col-md-6">
+                                {% include 'snippets/ctc_banner.html'  %}
+                            </div> <!-- .col-md-6 -->
+                            <div class="col-md-6">
+                                <h3><span>CTC Functions</span>03</h3>
+                                <p>
+                                    To investigate, discourage and prevent restrictive practices.
+                                </p>
+                                <a class="btn btn-main" href="#">Read More</a>
+                            </div> <!-- .col-md-6 -->
+                        </div> <!-- .row -->
+                    </div> <!-- .tab-pane -->
+                    <div class="tab-pane" id="item-04">
+                        <div class="row">
+                            <div class="col-md-6">
+                                {% include 'snippets/ctc_banner.html'  %}
+                            </div> <!-- .col-md-6 -->
+                            <div class="col-md-6">
+                                <h3><span>CTC Functions</span>04</h3>
+                                <p>
+                                    To study trends towards increased economic concentration, with a view to the investigation of monopoly situations and the prevention of such situations, where they are contrary to the public interest;
+                                </p>
+                                <a class="btn btn-main" href="#">Read More</a>
+                            </div> <!-- .col-md-6 -->
+                        </div> <!-- .row -->
+                    </div> <!-- .tab-pane -->
+                    <div class="tab-pane" id="item-05">
+                        <div class="row">
+                            <div class="col-md-6">
+                                {% include 'snippets/ctc_banner.html'  %}
+                            </div> <!-- .col-md-6 -->
+                            <div class="col-md-6">
+                                <h3><span>CTC Functions</span>05</h3>
+                                <p>
+                                    To advise the Minister of Industry and Commerce in regard to all aspects of economic competition, including entrepreneurial activities carried on by institutions directly or indirectly controlled by the State, and the formulation, co-ordination, implementation and administration of Government policy in regard to economic competition
+                                </p>
+                                <a class="btn btn-main" href="#">Read More</a>
+                            </div> <!-- .col-md-6 -->
+                        </div> <!-- .row -->
+                    </div> 
+                    <div class="tab-pane" id="item-06">
+                        <div class="row">
+                            <div class="col-md-6">
+                                {% include 'snippets/ctc_banner.html'  %}
+                            </div> <!-- .col-md-6 -->
+                            <div class="col-md-6">
+                                <h3><span>CTC Functions</span>06</h3>
+                                <p>
+                                    To provide information to interested persons on current policy with regard to restrictive practices, acquisitions and monopoly situations, to serve as guidelines for the benefit of those persons
+                                </p>
+                                <a class="btn btn-main" href="#">Read More</a>
+                            </div> <!-- .col-md-6 -->
+                        </div> <!-- .row -->
+                    </div> 
+                    <div class="tab-pane" id="item-07">
+                        <div class="row">
+                            <div class="col-md-6">
+                                {% include 'snippets/ctc_banner.html'  %}
+                            </div> <!-- .col-md-6 -->
+                            <div class="col-md-6">
+                                <h3><span>CTC Functions</span>07</h3>
+                                <p>
+                                    To undertake investigations and make reports to the Minister of Industry, Commerce and Enterprise Development relating to tariff charges, unfair trade practices and the provision of assistance or protection to local industry
+                                </p>
+                                <a class="btn btn-main" href="#">Read More</a>
+                            </div> <!-- .col-md-6 -->
+                        </div> <!-- .row -->
+                    </div> 
+                    <div class="tab-pane" id="item-08">
+                        <div class="row">
+                            <div class="col-md-6">
+                                {% include 'snippets/ctc_banner.html'  %}
+                            </div> <!-- .col-md-6 -->
+                            <div class="col-md-6">
+                                <h3><span>CTC Functions</span>08</h3>
+                                <p>
+                                    To monitor prices, costs and profits in any industry or business that the Minister of Industry, Commerce and Enterprise Development directs the Commission to monitor, and to report its findings to the Minister
+                                </p>
+                                <a class="btn btn-main" href="#">Read More</a>
+                            </div> <!-- .col-md-6 -->
+                        </div> <!-- .row -->
+                    </div>                   
+                </div>
+            </div> <!-- .col-sm-9 -->
+        </div> <!-- .row -->
+    </div> <!-- .container -->
+</section> <!-- .service-tab -->
+
+<section class="split-section split-single skill-section">
+    <div class="single-layer bottom-layer">
+        
+        <div class="content-block" style="background-color: #f5f5f5 !important;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5 col-sm-7 col-md-offset-7 col-sm-offset-5">
+                        <div class="content-wrapper">
+                            <h2><small>About Us</small><span style="color: #006634 !important;">Background</span></h2>
+                            <p style="text-align: justify !important;">
+                                The Competition and Tariff Commission (Commission) is a statutory body established under the Competition Act [Chapter 14:28]. The present Commission is a product of the merger in 2001 of the former Industry and Trade Competition Commission (ITCC) and Tariff Commission (TC)
+                            </p>
+                            <p style="text-align: justify !important;">The ITCC had been established under the Competition Act, 1996 (No.7 of 1996) as a competition regulatory authority, while the TC had been established under the Tariff Commission Act [ Chapter 14:29] as a trade tariffs advisory authority.</p>                                      
+                            <p style="margin-bottom: 10px;"><strong>Below are CTC Core Values:</strong></p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul class="link-list">
+                                        <li><a href="#"><span>Teamwork</span></a></li>
+                                        <li><a href="#"><span>Integrity</span></a></li>
+                                      
+                                        
+            
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul class="link-list">
+                                        
+                                        <li><a href="#"><span>Innovation</span></a></li>
+                                        <li><a href="#"><span>Professionalism</span></a></li>
+                                
+            
+                                    </ul>
+                                </div>
+                            </div>                     
+                        </div> <!-- .content-wrapper -->
+                    </div> <!-- .col-md-5 -->
+                </div> <!-- .row -->
+            </div> <!-- .container -->
+        </div><!-- .content-block -->
+
+        <div class="col-md-6 col-sm-4 img-block">
+            
+        </div> <!-- .img-block -->
+
+    </div> <!-- .top-layer -->
+</section> <!-- .split-section -->
+<!-- <section class="service-tab section-block intro-03">
+    <div class="container">
+        <div class="title-block">
+            <h2>Divisions</h2>
+            <p>
+                All Our Divions
+            </p>
+        </div>
+            
+                
+        <div class="row feature-set content-block">
+            {% for division in  divisions %}
+            <div class="col-md-4">
+                <div class="item-wrapper">
+                    <div class="icon-box">
+                        <i class="fa {{division.icon}}" aria-hidden="true"></i>
+                    </div>
+                    <div class="content-wrapper">
+                        <h6>{{division.heading}}</h6>
+                        <p>
+                            {{division.small_description|title|truncatechars:100}}..
+                        </p>
+                        <a class="btn-open" href="{% url 'general:division_details' division.slug  %}">Read More <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div> 
+            {% endfor %}           
+        </div> 
+     
+        
+    </div>
+</section> -->
+{% if emblems %}
+<section class="partner-section partner-02 section-block">
+    <div class="container">
+        <div class="title-block">
+            <h2>Quick Links</h2>
+            <p>
+               Links to our partners
+            </p>
+        </div> <!-- .title-block -->
+        <div class="row">
+            {% for emblem in emblems %}
+            <div class="col-md-3 col-sm-6">
+                <div class="image-wrapper">
+                    <a href="{{emblem.name}}" target="_blank">
+                        <img src="{{emblem.logo.url}}" alt="{{emblem.name}}">
+                    </a>
+                    
+                </div> <!-- .image-wrapper -->
+            </div> <!-- .col-md-3 -->
+            {% endfor %}
+        </div> <!-- .row -->
+    </div> <!-- .container -->
+</section> <!-- .partner-section -->
+{% endif %}
+{% if latest_news %}
+	<section class="blog-section blog-style-02 section-block"  style="background-color:  #f5f5f5;">
+		<div class="container">
+			<div class="title-block">
+				<h2>Latest News</h2>
+				<p>
+					All news posts
+				</p>
+			</div> <!-- .title-block -->
+			<div class="row">
+                {% for news in latest_news %}
+				<div class="col-lg-4">
+					<div class="post-wrapper post-overlay">
+						<div class="image-wrapper gradient-black">
+							<img class="img-responsive" src="{{news.cover_image.url}}" alt="{{news.title}}" style="height:250px;width:100%;object-fit:cover; object-position: 100% 0;">
+						</div> <!-- .image-wrapper -->
+						<div class="post-content">
+							<ul class="post-meta">
+								<li>{{news.timestamp}}</li>
+								<li><a href="{% url 'general:news_details' news.slug %}">{{news.author}}</a></li>
+							</ul>
+							<h3><a href="{% url 'general:news_details' news.slug %}">{{news.title|title|truncatechars:"25"}}...</a></h3>
+						</div> <!-- .post-content -->
+					</div> <!-- .post-wrapper post-overlay -->
+				</div> <!-- .col-lg-4 -->
+                {% endfor %}
+			
+			
+			</div> <!-- .row -->
+			<div class="btn-container"> 
+				<a class="btn btn-narrow" href="{% url 'general:news' %}">View All</a>
+			</div>
+			
+		</div> <!-- .container -->
+	</section> <!-- .blog-section -->
+{% endif %}
+
+
+
+{% endblock %}

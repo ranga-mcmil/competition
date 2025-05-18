@@ -1,0 +1,76 @@
+{% extends 'shared.html' %}
+{% load static %}
+{% block title %}{{category|title}}{% endblock %}
+{% block content %}
+
+<section class="hero-area">
+    <div class="page-title-banner">
+        <div class="container">
+            <div class="content-wrapper">
+                <h2>{{category|title}}</h2>
+                <ul class="bread-crumb">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#">{{category|title}}</a></li>
+                </ul>
+            </div> <!-- .content-wrapper -->
+        </div> <!-- .container -->
+    </div> <!-- .page-title-banner -->
+</section> <!-- .hero-area -->
+
+<section class="service-details section-block">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 col-md-push-3 service-content">
+                {% for download in downloads %}                              
+                    <div class="row lead cmc-downloads">
+                      <div>
+                        <div class="col-md-2">
+                            <img src="{% static 'img/banner/pdf.svg' %}" alt="pdf icon" height="50">
+                        </div>
+                        <div class="col-md-8">
+                           <p> {{download.file_name|title}}</p>
+                        </div>
+                        <div class="col-md-2">
+                            <a class="btn btn-narrow" href="{{download.file.url}}" target="_blank">Download</a>
+                        </div>
+                      </div>
+                
+                  
+                    </div>  
+
+                {% endfor %}
+
+                {% include 'snippets/pagination.html' with items=downloads %}
+
+            </div> <!-- .service-content -->
+            <div class="col-md-3 col-md-pull-9 sidebar">
+                <div class="widget widget-download">
+                    <ul>
+                        <li><a href="{% url 'general:downloads' 'comesa-competition-commission' %}"> Comesa Competition Commission</a></li>
+                        <li><a href="{% url 'general:downloads' 'commission-decisions' %}"> Commission Decisions</a></li>
+                        <li><a href="{% url 'general:downloads' 'forms' %}"> Forms</a></li>
+                        <li><a href="{% url 'general:downloads' 'legal-and-corporate-issues' %}"> Legal & Corporate Issues</a></li>
+                        <li><a href="{% url 'general:downloads' 'guidelines' %}"> Guidelines</a></li>
+                        <li><a href="{% url 'general:downloads' 'brochures' %}"> Brochures</a></li>
+                        <li><a href="{% url 'general:downloads' 'policies' %}"> Policies</a></li>
+                        <li><a href="{% url 'general:downloads' 'annual-reports' %}"> Annual Reports</a></li>
+                        <li><a href="{% url 'general:downloads' 'newsletter' %}"> Newsletters</a></li>
+                        <li><a href="{% url 'general:downloads' 'strategic-plan' %}"> Strategic Plan</a></li>
+                        <li><a href="{% url 'general:downloads' 'stakeholder-consultations' %}"> Stakeholder Consultations</a></li>
+                        <li><a href="{% url 'general:downloads' 'sector-studies' %}">Sector Studies</a></li>
+                        <li><a href="{% url 'general:downloads' 'african-competition-forum-studies' %}">African Competition Forum Studies</a></li>
+                        <li><a href="{% url 'general:downloads' 'analytical-papers' %}">Analytical Papers</a></li>
+                        <li><a href="{% url 'general:downloads' 'complaints-form-relating-to-restrictive-practices' %}">Complaints Form relating to Restrictive Practices</a></li>
+                        <li><a href="{% url 'general:downloads' 'merger-notification-form' %}">Merger Notification Form</a></li>
+                        <li><a href="{% url 'general:downloads' 'dumping-form' %}">Dumping Form</a></li>
+                    </ul>
+                </div> <!-- .widget widget-download -->
+
+
+
+            </div> <!-- .col-md-4 -->
+        </div> <!-- .row -->
+    </div> <!-- .container -->
+</section> <!-- .service-details -->
+
+{% endblock %}

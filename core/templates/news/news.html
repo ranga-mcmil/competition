@@ -1,0 +1,60 @@
+{% extends 'shared.html' %}
+{% load static %}
+{% block title %}News{% endblock %}
+{% block content %}
+
+
+<section class="hero-area">
+    <div class="page-title-banner">
+        <div class="container">
+            <div class="content-wrapper">
+                <h2>News</h2>
+                <ul class="bread-crumb">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#">News</a></li>
+                </ul>
+            </div> <!-- .content-wrapper -->
+        </div> <!-- .container -->
+    </div> <!-- .page-title-banner -->
+</section> <!-- .hero-area -->
+
+<section class="blog-section blog-post-07 page-content">
+    <div class="container">
+        {% if news %}
+        <div class="row blog-posts">
+            {% for news_item in news %}
+            <div class="col-md-4">
+                <div class="post-wrapper post-grid">
+                    <div class="image-wrapper">
+                        <img class="img-responsive" src="{{news_item.cover_image.url}}" alt="{{news_item.title}}" style="height:250px;width:100%;object-fit:cover; object-position: 100% 0;">
+                    </div> <!-- .image-wrapper -->
+                    <div class="post-content">
+                        <ul class="post-meta">
+                            <li>{{news_item.timestamp}}</li>
+                            <li><a href="#">{{news_item.author}}</a></li>
+                        </ul>
+                        <h3 class="entry-title"><a href="{% url 'general:news_details' news_item.slug %}">{{news_item.title|title|truncatechars:"25"}}</a></h3>
+                        <div class="entry-content">
+                        
+                              <p>{{news_item.content|safe|title|truncatechars:"50"}}...</p>  
+                            
+                        </div>
+                        <a class="btn-open" href="{% url 'general:news_details' news_item.slug %}">Read More</a>
+                    </div> <!-- .post-content -->
+                </div> <!-- .post-wrapper -->
+            </div> <!-- .col-md-4 -->   
+            {% endfor %}
+            
+            {% include 'snippets/pagination.html' with items=news %}
+        </div> <!-- .row -->
+        {% else %}
+        <h3 class="text-center">No News created</h3>
+        {% endif %}
+
+    </div> <!-- .container -->
+</section> <!-- .portfolio-section -->
+
+
+
+
+{% endblock %}
