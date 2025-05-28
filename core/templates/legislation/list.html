@@ -1,0 +1,91 @@
+{% extends 'shared.html' %}
+{% load static %}
+{% block title %}Legislation Files{% endblock %}
+{% block content %}
+
+<section class="hero-area">
+    <div class="page-title-banner">
+        <div class="container">
+            <div class="content-wrapper">
+                <h2>Legislation Files</h2>
+                <ul class="bread-crumb">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="">Legislation</a></li>
+                    <li><a href="#">All Files</a></li>
+                </ul>
+            </div> <!-- .content-wrapper -->
+        </div> <!-- .container -->
+    </div> <!-- .page-title-banner -->
+</section> <!-- .hero-area -->
+
+<section class="service-details section-block">
+    <div class="container">
+        <div class="title-block">
+            <h2>Legislation Files</h2>
+            
+            <!-- Category Filter -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <form method="get" class="form-inline">
+                        <label for="category" class="mr-2">Filter by Category:</label>
+                        <select name="category" id="category" class="form-control mr-2" onchange="this.form.submit()">
+                            <option value="">All Categories</option>
+                            {% for category in categories %}
+                            <option value="{{ category.slug }}" {% if selected_category == category.slug %}selected{% endif %}>
+                                {{ category.slug|title }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                        <noscript>
+                            <button type="submit" class="btn btn-primary">Filter</button>
+                        </noscript>
+                    </form>
+                </div>
+                <div class="col-md-6 text-right">
+                    <p><strong>{{ total_count }}</strong> file{{ total_count|pluralize }} found</p>
+                </div>
+            </div>
+        
+        </div> <!-- .title-block -->
+        {% if files %}
+        <div class="row">
+            <div class="col-md-12 service-content">
+                {% for file in files %}                              
+                    <div class="row lead cmc-downloads">
+                        <div class="col-md-1">
+                            <div style="text-align: center; background-color: #0f663b;color: #fff;">
+                                {{ forloop.counter }} 
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <small>{{ file.category.slug|title }}</small>
+                            <h4>{{ file.file_name }}</h4>
+                            <p>Size: {{ file.file_size|filesizeformat }}</p>
+                        </div>
+                        <div class="col-md-3">                        
+                            <small>| posted: {{file.timestamp|timesince }} ago |</small>
+                        </div>
+                        <div class="col-md-2">
+                            <a class="btn btn-narrow" href="{{ file.file.url }}" target="_blank">Download</a>
+                        </div>
+                    </div>  
+
+                {% endfor %}
+
+                {% include 'snippets/pagination.html' with items=files %}
+
+            </div> <!-- .service-content -->
+           
+        </div> <!-- .row -->
+        {% else %}
+        <h3 class="text-center mb-3">No Legislation Files Available{% if selected_category %} for this category{% endif %}.</h3>
+        {% if selected_category %}
+        <div class="text-center">
+            <a href="{% url 'general:legislation_file_list' %}" class="btn btn-primary">View All Files</a>
+        </div>
+        {% endif %}
+        {% endif %}
+    </div> <!-- .container -->
+</section> <!-- .service-details -->
+
+{% endblock %}

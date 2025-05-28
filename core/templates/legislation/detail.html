@@ -1,0 +1,80 @@
+{% extends 'shared.html' %}
+{% load static %}
+{% block title %}{{ file.file_name }} - Legislation File{% endblock %}
+
+{% block content %}
+<section class="hero-area">
+    <div class="page-title-banner">
+        <div class="container">
+            <div class="content-wrapper">
+                <h2>{{ file.file_name }}</h2>
+                <ul class="bread-crumb">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="{% url 'general:legislation_list' %}">Legislation</a></li>
+                    <li><a href="{% url 'general:legislation_detail' category.slug %}">{{ category.slug|title }}</a></li>
+                    <li><a href="#">{{ file.file_name|truncatewords:3 }}</a></li>
+                </ul>
+            </div> <!-- .content-wrapper -->
+        </div> <!-- .container -->
+    </div> <!-- .page-title-banner -->
+</section> <!-- .hero-area -->
+
+<section class="shortcode-section section-block">
+    <div class="container">
+    <h2 class="section-title">{{ file.file_name }}</h2>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="legislation-file-content">
+                <h4>File Information</h4>
+                <p>This legislation file belongs to the <strong>{{ category.slug|title }}</strong> category.</p>
+                
+                {% if category.content %}
+                <div class="category-description">
+                    <h5>Category Description:</h5>
+                    {{ category.content|safe }}
+                </div>
+                {% endif %}
+                
+                <div class="download-section mt-4">
+                    <div class="row lead cmc-downloads">
+                       <div>
+                         <div class="col-md-2">
+                             <img src="{% static 'img/banner/pdf.svg' %}" alt="pdf icon" height="50">
+                         </div>
+                         <div class="col-md-8">
+                            <p><strong>{{ file.file_name }}</strong></p>
+                            <small>Size: {{ file.file_size|filesizeformat }}</small>
+                         </div>
+                         <div class="col-md-2">
+                             <a class="btn btn-narrow" href="{{ file.file.url }}" target="_blank">Download</a>
+                         </div>
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="cmc-downloads">
+                <p><i>Type:</i> Legislation File</p>
+                <p><i>Category:</i> {{ category.slug|title }}</p>
+                <p><i>File Name:</i> {{ file.file_name }}</p>
+                <p><i>File Size:</i> {{ file.file_size|filesizeformat }}</p>
+                <p><i>Posted on:</i> {{ file.timestamp|date:"F d, Y" }}</p>
+                <p><i>Last updated:</i> {{ file.updated|date:"F d, Y" }}</p>
+                
+                <h5>Quick Actions:</h5>
+                <ul>
+                    <li><a href="{{ file.file.url }}" target="_blank">🔗 Open File</a></li>
+                    <li><a href="{% url 'general:legislation_detail' category.slug %}">📂 View Category</a></li>
+                    <li><a href="{% url 'general:legislation_file_list' %}">📋 All Files</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+ 
+
+    </div> <!-- .container -->
+</section> <!-- .shortcode-section -->
+
+
+{% endblock %}

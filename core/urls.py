@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import general, gallery, about, news, vacancy, tenders
+from .views import general, gallery, about, news, vacancy, tenders, charters, legislation
 
 app_name = 'general'
 
@@ -19,5 +19,12 @@ urlpatterns = [
     path('vacancies/',vacancy.vacancies, name='vacancies'),
     path('vacancy/<int:id>/<slug:slug>/',vacancy.vacancy_details, name='vacancy_details'),
     path('tenders/',tenders.tenders, name='tenders'),
+
+    path('charters/', charters.client_charter_list, name='charter_list'),
+    path('charter/<slug:slug>/', charters.client_charter_detail, name='charter_detail'),
+
+    # Legislation file views
+    path('legislation-files/', legislation.legislation_file_list, name='legislation_file_list'),
+    path('legislation-files/<int:file_id>/', legislation.legislation_file_detail, name='legislation_file_detail'),
 
 ]

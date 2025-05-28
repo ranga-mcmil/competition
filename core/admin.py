@@ -96,3 +96,45 @@ admin.site.register(models.Download, DownloadAdmin)
 admin.site.register(models.Vacancy, VacancyAdmin)
 admin.site.register(models.Emblem, EmblemAdmin)
 admin.site.register(models.Tender, TenderAdmin)
+
+@admin.register(models.ClientCharter)
+class ClientCharterAdmin(admin.ModelAdmin):
+    list_display = ['__str__', 'published', 'has_english', 'has_shona', 'has_ndebele', 'timestamp']
+    list_filter = ['published', 'timestamp']
+    search_fields = ['description']
+    list_editable = ['published']
+    date_hierarchy = 'timestamp'
+    ordering = ['-timestamp']
+    readonly_fields = ['slug', 'timestamp', 'updated']
+    
+    fieldsets = (
+        ('Charter Description', {
+            'fields': ('description',)
+        }),
+        ('Charter Files', {
+            'fields': ('english_charter', 'shona_charter', 'ndebele_charter'),
+            'description': 'Upload charter files in different languages'
+        }),
+        ('Publication Settings', {
+            'fields': ('published',)
+        }),
+        ('System Fields', {
+            'fields': ('slug', 'timestamp', 'updated'),
+            'classes': ('collapse',)
+        }),
+    )
+    
+    def has_english(self, obj):
+        return bool(obj.english_charter)
+    has_english.boolean = True
+    has_english.short_description = 'English'
+    
+    def has_shona(self, obj):
+        return bool(obj.shona_charter)
+    has_shona.boolean = True
+    has_shona.short_description = 'Shona'
+    
+    def has_ndebele(self, obj):
+        return bool(obj.ndebele_charter)
+    has_ndebele.boolean = True
+    has_ndebele.short_description = 'Ndebele'

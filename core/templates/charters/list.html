@@ -1,0 +1,67 @@
+{% extends 'shared.html' %}
+{% load static %}
+{% block title %}Client Charters{% endblock %}
+{% block content %}
+
+<section class="hero-area">
+    <div class="page-title-banner">
+        <div class="container">
+            <div class="content-wrapper">
+                <h2>Client Charters</h2>
+                <ul class="bread-crumb">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#">Client Charters</a></li>
+                </ul>
+            </div> <!-- .content-wrapper -->
+        </div> <!-- .container -->
+    </div> <!-- .page-title-banner -->
+</section> <!-- .hero-area -->
+
+<section class="service-details section-block">
+    <div class="container">
+        <div class="title-block">
+            <h2>Client Charters</h2>
+        
+        </div> <!-- .title-block -->
+        {% if charters %}
+        <div class="row">
+            <div class="col-md-12 service-content">
+                {% for charter in charters %}                              
+                    <div class="row lead cmc-downloads">
+                      <div>
+                        <div class="col-md-1">
+                            <div style="text-align: center; background-color: #0f663b;color: #fff;">
+                                {{ forloop.counter }} 
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-6">
+                            <small>Client Charter</small>
+                            <h4>Charter - {{ charter.timestamp|date:"F Y" }}</h4>
+                                        
+                        </div>
+                        <div class="col-md-4">                        
+                            <small>| posted: {{charter.timestamp|timesince }} ago |</small>
+                        </div>
+                        <div class="col-md-1">
+                            <a class="btn btn-narrow" href="{% url 'general:charter_detail' charter.slug %}" >View</a>
+                        </div>
+                      </div>
+                
+                  
+                    </div>  
+
+                {% endfor %}
+
+                {% include 'snippets/pagination.html' with items=charters %}
+
+            </div> <!-- .service-content -->
+           
+        </div> <!-- .row -->
+        {% else %}
+        <h3 class="text-center mb-3">No Client Charters Available.</h3>
+        {% endif %}
+    </div> <!-- .container -->
+</section> <!-- .service-details -->
+
+{% endblock %}

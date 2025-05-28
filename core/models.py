@@ -2,6 +2,7 @@ from django.db import models
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.urls import reverse
 from core.enums import DownloadEnum, TeamEnum
+import uuid
 
 # Create your models here.
 
@@ -36,7 +37,7 @@ class Division(models.Model):
         return self.heading
 
     class Meta:
-        ordering = ["-timestamp", ] 
+        ordering = ["-timestamp", ]
 
 class Folder(models.Model):
     name = models.CharField(max_length=255)
@@ -87,9 +88,11 @@ class Download(models.Model):
         ("merger-notification-form","Merger Notification Form"),
         ("dumping-form","Dumping Form"),
         ("summary-merger-decisions","Summary Merger Decisions"),
+        ("summary-merger-decisions","Summary Merger Decisions"),
+
         )
     
-    category = models.CharField(max_length=255, choices=CAT, unique=True)
+    category = models.CharField(max_length=255, choices=CAT)
     file_name = models.CharField(max_length=255) 
     file_size = models.CharField(max_length=255, default="0")  
     file = models.FileField(upload_to='files/%Y/%m/%d/')
@@ -271,3 +274,69 @@ class Tender(models.Model):
 
 
 
+class Vacancy(models.Model):
+    JOB_TYPES = (
+        ('','Select a category'),
+        ('full-time', 'Full time'),
+        ('part-time','Part time'),
+        ('remote','Remote'),
+        ('project','Project'),
+        ('contract','Contract')
+    )
+    
+    job_type = models.CharField(max_length=100,choices=JOB_TYPES)
+    job_title = models.CharField(max_length=255) 
+    closing_date = models.DateField()
+    published = models.BooleanField(default=False)
+    file_size = models.CharField(max_length=255, default="0")  
+    attachment = models.FileField(upload_to='job/%Y/%m/%d/',blank=True, null=True)
+    content = RichTextUploadingField(blank=True, null=True)
+    slug = models.SlugField()
+    updated = models.DateTimeField(auto_now=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.job_title
+
+
+
+class ClientCharter(models.Model):
+    description = RichTextUploadingField(blank=True, null=True)
+    english_charter = models.FileField(
+        upload_to='charters/english/%Y/%m/%d/', 
+        blank=True, 
+        null=True,
+        help_text="Upload English version of the charter"
+    )
+    shona_charter = models.FileField(
+        upload_to='charters/shona/%Y/%m/%d/', 
+        blank=True, 
+        null=True,
+        help_text="Upload Shona version of the charter"
+    )
+    ndebele_charter = models.FileField(
+        upload_to='charters/ndebele/%Y/%m/%d/', 
+        blank=True, 
+        null=True,
+        help_text="Upload Ndebele version of the charter"
+    )
+    slug = models.SlugField(unique=True)
+    published = models.BooleanField(default=False)
+    updated = models.DateTimeField(auto_now=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            # Generate slug from timestamp and a short UUID for uniqueness
+            base_slug = f"client-charter-{self.timestamp.strftime('%Y-%m-%d') if self.timestamp else 'new'}"
+            unique_id = str(uuid.uuid4())[:8]
+            self.slug = f"{base_slug}-{unique_id}"
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"Client Charter - {self.timestamp.strftime('%Y-%m-%d') if self.timestamp else 'New'}"
+
+    class Meta:
+        ordering = ['-timestamp']
+        verbose_name = "Client Charter"
+        verbose_name_plural = "Client Charters"

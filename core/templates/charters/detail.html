@@ -1,0 +1,117 @@
+{% extends 'shared.html' %}
+{% load static %}
+{% block title %}Client Charter - {{ charter.timestamp|date:"F Y" }}{% endblock %}
+
+{% block content %}
+<section class="hero-area">
+    <div class="page-title-banner">
+        <div class="container">
+            <div class="content-wrapper">
+                <h2>Client Charter - {{ charter.timestamp|date:"F Y" }}</h2>
+                <ul class="bread-crumb">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="{% url 'general:charter_list' %}">Client Charters</a></li>
+                    <li><a href="#">Charter Details</a></li>
+                </ul>
+            </div> <!-- .content-wrapper -->
+        </div> <!-- .container -->
+    </div> <!-- .page-title-banner -->
+</section> <!-- .hero-area -->
+
+<section class="shortcode-section section-block">
+    <div class="container">
+    <h2 class="section-title">Client Charter - {{ charter.timestamp|date:"F Y" }}</h2>
+    <div class="row">
+        <div class="col-md-8">
+            {{ charter.description|safe }}
+            
+            {% if charter.english_charter or charter.shona_charter or charter.ndebele_charter %}
+            <br>
+            <h4>Download Charter Files</h4>
+            
+            {% if charter.english_charter %}
+            <div class="row lead cmc-downloads">
+               <div>
+                 <div class="col-md-2">
+                     <img src="{% static 'img/banner/pdf.svg' %}" alt="pdf icon" height="50">
+                 </div>
+                 <div class="col-md-8">
+                    <p>English Charter</p>
+                 </div>
+                 <div class="col-md-2">
+                     <a class="btn btn-narrow" href="{{ charter.english_charter.url }}" target="_blank">Download</a>
+                 </div>
+               </div>
+            </div>
+            {% endif %}
+
+            {% if charter.shona_charter %}
+            <div class="row lead cmc-downloads">
+               <div>
+                 <div class="col-md-2">
+                     <img src="{% static 'img/banner/pdf.svg' %}" alt="pdf icon" height="50">
+                 </div>
+                 <div class="col-md-8">
+                    <p>Shona Charter</p>
+                 </div>
+                 <div class="col-md-2">
+                     <a class="btn btn-narrow" href="{{ charter.shona_charter.url }}" target="_blank">Download</a>
+                 </div>
+               </div>
+            </div>
+            {% endif %}
+
+            {% if charter.ndebele_charter %}
+            <div class="row lead cmc-downloads">
+               <div>
+                 <div class="col-md-2">
+                     <img src="{% static 'img/banner/pdf.svg' %}" alt="pdf icon" height="50">
+                 </div>
+                 <div class="col-md-8">
+                    <p>Ndebele Charter</p>
+                 </div>
+                 <div class="col-md-2">
+                     <a class="btn btn-narrow" href="{{ charter.ndebele_charter.url }}" target="_blank">Download</a>
+                 </div>
+               </div>
+            </div>
+            {% endif %}
+
+            {% endif %}  
+        </div>
+        <div class="col-md-4">
+            <div class="cmc-downloads">
+                <p><i>Type:</i> Client Charter</p>
+                <p><i>Posted on:</i> {{ charter.timestamp|date:"F d, Y" }}</p>
+                <p><i>Last updated:</i> {{ charter.updated|date:"F d, Y" }}</p>
+                
+                <h5>Available Languages:</h5>
+                <ul>
+                    {% if charter.english_charter %}
+                    <li>✅ English</li>
+                    {% else %}
+                    <li>❌ English</li>
+                    {% endif %}
+                    
+                    {% if charter.shona_charter %}
+                    <li>✅ Shona</li>
+                    {% else %}
+                    <li>❌ Shona</li>
+                    {% endif %}
+                    
+                    {% if charter.ndebele_charter %}
+                    <li>✅ Ndebele</li>
+                    {% else %}
+                    <li>❌ Ndebele</li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+ 
+
+    </div> <!-- .container -->
+</section> <!-- .shortcode-section -->
+
+
+{% endblock %}

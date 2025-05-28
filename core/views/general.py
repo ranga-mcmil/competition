@@ -50,5 +50,5 @@ def teams(request, category):
 
 def legislation(request, slug):
     template_name = "general/legislation.html"
-    obj = get_object_or_404(models.Legislation, slug =slug)
-    return render(request,template_name,{'obj':obj})
+    items = models.Legislation.objects.all()
+    return render(request,template_name,{'obj':items})
