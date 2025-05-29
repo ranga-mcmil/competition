@@ -4,11 +4,11 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 
 
-def division_details(request, slug):
+def division_details(request, category):
     template_name = 'about/division_details.html'
-    obj = get_object_or_404(Division, slug= slug)
+    obj = get_object_or_404(Division, category= category)
     divisions = Division.objects.exclude(slug = obj.slug)
-    return render(request, template_name, {"obj":obj,'divisions':divisions})
+    return render(request, template_name, { "obj":obj, 'divisions':divisions })
 
 def background_or_mandate(request):
     template_name = 'about/background_or_mandate.html'

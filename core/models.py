@@ -25,6 +25,14 @@ class Slider(models.Model):
         ordering = ["-timestamp", ] 
 
 class Division(models.Model):
+    CATEGORY_CHOICES = [
+        ("competition", "Competition"),
+        ("research", "Research Unit"),
+        ("tariffs", "Tariffs"),
+        ("legal", "Legal & Corporate Services"),
+        ("finance", "Finance and Administration"),
+    ]
+    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, null=True)
     heading = models.CharField(max_length=255)
     icon = models.CharField(max_length=255, null=True, blank=True)
     small_description = models.TextField()
