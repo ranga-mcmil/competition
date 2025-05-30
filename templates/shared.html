@@ -86,8 +86,7 @@
 								<li class="dropdown">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Our Divisions</a>
 									<ul class="dropdown-menu">
-										<li class="dropdown">
-											<a href=""  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mergers & Acquisitions</a></li>	
+										<li><a href="{% url 'general:division_details' 'mergers-acquisitions' %}">Mergers & Acquisitions</a></li>
 
 										<li class="dropdown">
 											<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Research & PR</a>
@@ -100,16 +99,17 @@
 										</li>
 												 						
 										<li class="dropdown">
-											<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">Tariff Trade</a>
+											<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tariff Trade</a>
 											<ul class="dropdown-menu">
 												<li><a href="{% url 'general:division_details' 'trade-remedies' %}">Trade Remedies</a></li>
 												<li><a href="{% url 'general:division_details' 'tariff-assistance' %}">Tariff Assistance</a></li>			
-											</ul> <!-- .dropdown-menu -->
+											</ul>
 										</li>
+										
 										<li><a href="{% url 'general:division_details' 'legal-and-corporate-services' %}">Legal & Corporate Services</a></li>
 										<li><a href="{% url 'general:division_details' 'restrictive-practices' %}">Restrictive Practices</a></li>
 										<li><a href="{% url 'general:division_details' 'finance-and-admin-services' %}">Finance & Admin Services</a></li>
-									</ul> <!-- .dropdown-menu -->
+									</ul>
 								</li>
 								<li>
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Our Team</a>
