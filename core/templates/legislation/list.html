@@ -7,11 +7,10 @@
     <div class="page-title-banner">
         <div class="container">
             <div class="content-wrapper">
-                <h2>Legislation Files</h2>
+                <h2>Legislation</h2>
                 <ul class="bread-crumb">
                     <li><a href="/">Home</a></li>
-                    <li><a href="">Legislation</a></li>
-                    <li><a href="#">All Files</a></li>
+                    <li><a href="#">Legislation</a></li>
                 </ul>
             </div> <!-- .content-wrapper -->
         </div> <!-- .container -->
@@ -21,32 +20,60 @@
 <section class="service-details section-block">
     <div class="container">
         <div class="title-block">
-            <h2>Legislation Files</h2>
-            
-            <!-- Category Filter -->
-            <div class="row mb-4">
-                <div class="col-md-6">
-                    <form method="get" class="form-inline">
-                        <label for="category" class="mr-2">Filter by Category:</label>
-                        <select name="category" id="category" class="form-control mr-2" onchange="this.form.submit()">
-                            <option value="">All Categories</option>
-                            {% for category in categories %}
-                            <option value="{{ category.slug }}" {% if selected_category == category.slug %}selected{% endif %}>
-                                {{ category.slug|title }}
-                            </option>
-                            {% endfor %}
-                        </select>
-                        <noscript>
-                            <button type="submit" class="btn btn-primary">Filter</button>
-                        </noscript>
-                    </form>
-                </div>
-                <div class="col-md-6 text-right">
-                    <p><strong>{{ total_count }}</strong> file{{ total_count|pluralize }} found</p>
+            <h2>Legislation</h2>
+        </div> <!-- .title-block -->
+        
+        <!-- NEW: Competition Act Explanatory Content -->
+        <div class="row mb-5">
+            <div class="col-md-12">
+                <div class="legislation-introduction">
+                    <p>The Competition Act [<em>Chapter 14:28</em>] prohibits two main types of restrictive business practices: (i) restrictive practices that are considered using the rule-of-reason approach; and (ii) unfair business practices that are <em>per se</em> prohibited.</p>
+
+                    <p><strong><em>(i) Restrictive Practices</em></strong></p>
+
+                    <p>Restrictive practices as defined in terms of section 2(1) of the Competition Act [<em>Chapter 14:28</em>] include anti-competitive agreements, and other concerted action, and unilateral conduct of an abusive nature. Abuse of dominance, or monopolisation, is therefore covered in the definition. Section 32(2) of the Act provides that "… the Commission shall regard a restrictive practice as contrary to the public interest if it is engaged in by a person with substantial market control over the commodity or service to which the practice relates …". Prohibited restrictive practices are of both exclusionary and exploitative nature, and include:</p>
+
+                    <ul>
+                        <li>restricting the production or distribution of any commodity or service;</li>
+                        <li>limiting the facilities available for the production or distribution of any commodity or service;</li>
+                        <li>enhancing or maintaining the price of any commodity or service;</li>
+                        <li>preventing the production or distribution of any commodity or service by the most efficient or economical means;</li>
+                        <li>preventing or retarding the development or introduction of technical improvements in regard to any commodity or service;</li>
+                        <li>preventing or restricting the entry into any market of persons producing or distributing any commodity or service;</li>
+                        <li>preventing or retarding the expansion of the existing market for any commodity or service or the development of new markets therefor; and</li>
+                        <li>limiting the commodity or service available due to tied or conditional selling.</li>
+                    </ul>
+
+                    <p><strong>To Read More, download the legislation files below:</strong></p>
+                    <hr class="my-4">
                 </div>
             </div>
+        </div>
+        <!-- END: Competition Act Explanatory Content -->
         
-        </div> <!-- .title-block -->
+        <!-- Existing filtering and file listing section -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <form method="get" class="form-inline">
+                    <label for="category" class="mr-2">Filter by Category:</label>
+                    <select name="category" id="category" class="form-control mr-2" onchange="this.form.submit()">
+                        <option value="">All Categories</option>
+                        {% for category in categories %}
+                        <option value="{{ category.slug }}" {% if selected_category == category.slug %}selected{% endif %}>
+                            {{ category.slug|title }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                    <noscript>
+                        <button type="submit" class="btn btn-primary">Filter</button>
+                    </noscript>
+                </form>
+            </div>
+            <div class="col-md-6 text-right">
+                <p><strong>{{ total_count }}</strong> file{{ total_count|pluralize }} found</p>
+            </div>
+        </div>
+        
         {% if files %}
         <div class="row">
             <div class="col-md-12 service-content">
@@ -69,13 +96,10 @@
                             <a class="btn btn-narrow" href="{{ file.file.url }}" target="_blank">Download</a>
                         </div>
                     </div>  
-
                 {% endfor %}
 
                 {% include 'snippets/pagination.html' with items=files %}
-
             </div> <!-- .service-content -->
-           
         </div> <!-- .row -->
         {% else %}
         <h3 class="text-center mb-3">No Legislation Files Available{% if selected_category %} for this category{% endif %}.</h3>
